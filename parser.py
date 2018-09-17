@@ -42,7 +42,9 @@ def sci_notation(n):
     return '%.8E' % Decimal(n)
 
 #Part 1: Read in the matrix files from two checkpoint files
-
+AElec = 0
+BElec = 0
+NElec = 0
 NBasis = 0
 filename1 = sys.argv[1]
 acc = 8 #accuracy to the acc's decimal place
@@ -57,8 +59,30 @@ with open(filename1,'r') as origin:
               for letter in i:
                   if(letter.isdigit()):
                       NBasis = NBasis*10 + int(letter)   
+        if "Number of alpha electrons" in line:
+          words = line.split()
+          for i in words:
+              for letter in i:
+                  if(letter.isdigit()):
+                      AElec = AElec*10 + int(letter)
 
+        if "Number of beta electrons" in line:
+          words = line.split()
+          for i in words:
+              for letter in i:
+                  if(letter.isdigit()):
+                      BElec = BElec*10 + int(letter)
+NElec = AElec + BElec
+NOccA = AElec
+NOccB = BElec
+NVirA = NBasis - NOccA
+NVirB = NBasis - NOccB
 print "Number of Basis Functions = ", NBasis, "\n"
+print "Number of Alpha Electrons = ", AElec, "\n"
+print "Number of Beta Electrons = ", BElec, "\n"
+print "Total Number of Electrons = ", NElec, "\n"
+print "Number of Alpha Virtual Orbitals = ", NVirA, "\n"
+print "Number of Beta Virtual Orbitals = ", NVirB, "\n"
 MOElements = NBasis * NBasis
 print "The code will look for ", MOElements, " elements of the MO Coeffienct matrix\n"
 PElements = int(NBasis*(NBasis+1)/2)
