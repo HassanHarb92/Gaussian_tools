@@ -14,7 +14,7 @@ import os
 #  Parser v 1.0
 #  By Hassan Harb
 #
-#  Program that pulls out matrices from checkpoint file and stores them in .mat files
+#  Program that pulls out matrices from checkpoint file and stores them in .dat files
 #
 #  usage: python parser.py checkpointfile.fchk
 #
